@@ -1,38 +1,304 @@
-.App {
+body {
+  font-family: Titillium, sans-serif;
+  font-weight: 300;
+  margin: 20px;
+  /*background: #262a2b;*/
+  background: linear-gradient(to top right,#fc2c77 0%,#6c4079 100%);
+  min-height: 100vh;
+
+}
+
+
+.todo-description {
+  position: inherit;
+  padding: 0 30px;
+  transform: translateY(100px)
+}
+
+.checkbox {
+  position: inherit;
+}
+
+.todo-panel {
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+  padding: 57px 65px 65px;
+}
+
+.todo-element {
+  min-width: 18em;
+  max-width: 64vw;
+  width: 100%;
+  background: -webkit-linear-gradient(to right, #d7d5ad, #F1F1EF, #F1F1EF);
+  background: linear-gradient(to right, #d7d5ad, #F1F1EF, #F1F1EF);
+  transition: all 0.3s ease-in-out;
+  padding: 2vh 8vw;
+
+  justify-content: space-around;
+  margin: 0.5vh;
+  font-size: 1.25em;
+  /* make text unselectable */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
+}
+
+.edit-Panel {
+  z-index: 100;
+  position: absolute;
+
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+  width: 50vw;
+
+}
+
+.todo-element:hover {
+
+  background: -webkit-linear-gradient(to right, #5dff0e, #eec93b);
+  background: linear-gradient(to right, #5dff0e, #eec93b);
+  cursor: pointer;
+  animation: skew 3s infinite;
+  transform: skew(-5deg);
+  transition: all 0.3s ease;
+}
+
+.todo-element:hover:after {
+  background: black;
+}
+
+.input-text {
+
+}
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  transform: translateY(50);
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+input {
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: -internal-light-dark(black, white);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+  -webkit-rtl-ordering: logical;
+  cursor: pointer;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+}
+
+.input--style-3 {
+  align-self: end;
+  line-height: 27px;
+  background: #fafafa;
+  -webkit-box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
+  -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+  box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /*padding: 0 33px;*/
+  width: 30%;
+  font-size: 18px;
+  color: #666;
+  visibility: hidden;
+}
+
+.notification {
+  font-size: 1.25rem;
+  text-align: center;
+  color: red;
+  text-shadow: #2196F3 0 1px 5px;
+}
+
+.input--style-4 {
+  line-height: 50px;
+  background: #fafafa;
+  -webkit-box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
+  -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
+  box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  /*padding: 0 133px;*/
+  width: 60%;
+  font-size: 18px;
+  color: #666;
+  -webkit-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.edit-icon {
+  padding: 10px;
+  margin: 0;
+  transform: translateX(-20px);
+  z-index: 55;
+  cursor: pointer;
+}
+
+.todo-icon:hover {
+  cursor: pointer;
+}
+
+
+.btn--blue {
+  background: #4272d7;
+}
+
+.btn--radius-2 {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.btn {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 20px;
+  -webkit-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  font-family: poppins,arial,helvetica neue,sans-serif;
+  margin-left: 5px;
+}
+button {
+  outline: none;
+  background: 0 0;
+  border: none;
+}
+
+
+.title {
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 40px;
+  color: #fff;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes roll {
+  0% {
+    transform: rotate(0);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+.text-black {
+  color: #4272d7;
+}
+
+.medium-padding {
+  padding-bottom: 3.5rem;
+}
+
+.small-padding {
+  padding-bottom: 0.75rem;
+}
+
+.center-item {
+  left: 20%;
+
+}
+
+.close-icon:hover {
+  display: inline-block;
+  animation: rotation 0.45s 1 linear;
+  cursor: pointer;
+}
+
+@keyframes rotation {
+
+  100% {
+    transform: rotate(360deg) scale(1.1);
   }
 }
