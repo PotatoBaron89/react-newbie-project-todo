@@ -25,8 +25,8 @@ Newbie project for learning //
 
 
 Creator Notes: Code has a lot of issues that need to be ironed out as I figure things out:
-    💪 MVC
+    💪 MVC / Dramatic improvement in project organisation
     💪 Significant Refactoring Needed
-    💪 Style sheet needs a complete reword (jumbled mess)
+    💪 Style sheet needs a complete reword (it's jumbled mess) / Perhaps use to SCSS to assist
 
     Far too much code in app.js, messy and unnecessary code, slew of inefficiences

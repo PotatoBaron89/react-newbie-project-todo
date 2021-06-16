@@ -1,20 +1,23 @@
 import { useState, useRef, useEffect } from "react";
 import './App.css';
+import './Components/Styles/social-header.css'
 import TodoList from './TodoList'
-import EditPanel from "./EditPanel.js";
 import uuidv4 from 'uuid/v4'
+import SOCIAL_CONTAINER from './Components/social-header.jsx'
+import {Helmet} from "react-helmet";
+import { Helper } from "./Helpers/Helper_Class.js"
+import { CONTAINER_CREATOR } from "./Helpers/Container_Creator.jsx"
+
+// const Container_Creator = new CONTAINER_CREATOR() // Work in progress feature
 
 function App() {
+
     const [todos, setTodos] = useState([])
     const [notification, setNotification] = useState('')
     const [editPanel, setEditPanel] = useState({visible: false, oldText: 'default', newText: ''})
     const todoNameRef = useRef(null)
     const toEditRef = useRef(null)
     const LOCAL_STORAGE_KEY = 'todoApp.todos'
-
-    const toggleEditPanel = () => {
-        this.setEditPanel(prevState => ({ isBoxVisible: !prevState.isBoxVisible }));
-    };
 
     // LOAD FROM LOCAL
     useEffect(() => {
@@ -73,12 +76,11 @@ function App() {
     }
 
     function handleEditTodo(e) {
-        editPanel.visible = !editPanel.visible
-        console.table(toEditRef)
+        //editPanel.visible = !editPanel.visible
+        console.table('Feature to be added')
     }
 
     const handleKeypress = e => {
-        //it triggers by pressing the enter key
         if (e.charCode === 13) {
             handleAddTodo();
         }
@@ -86,16 +88,24 @@ function App() {
 
   return (
     <>
-        {editPanel.visible && <EditPanel todosList={todos} editVal={editPanel} onClick={handleEditTodo} ref={toEditRef} editTodo={handleEditTodo}/>}
-        <h2 className="title">Todo List</h2>
-        <div className="todo-panel">
-            <TodoList todosList={todos} ref={toEditRef} toggleTodo={toggleTodo} editTodo={handleEditTodo} deleteTodo={handleDeleteTodo} />
-            <input className="input--style-4" ref={todoNameRef} type="text" onKeyPress={handleKeypress} />
-            <button className="btn btn--blue btn--radius-2" onClick={handleAddTodo}>Add Todo</button>
-            <button className="btn btn--blue btn--radius-2"  onClick={deleteCompletedTodos}>Remove Todo</button>
-            <div>{todos.filter(todo => !todo.complete).length} left todo</div>
-            <button>Display List</button>
-            <div className="notification">{notification}</div>
+        <Helmet>
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+                  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                  crossOrigin="anonymous"/>
+        </Helmet>
+
+        <SOCIAL_CONTAINER />
+
+        <div className="feature-container">
+            <div className="todo-panel">
+                <TodoList todosList={todos} ref={toEditRef} toggleTodo={toggleTodo} editTodo={handleEditTodo} deleteTodo={handleDeleteTodo} />
+                <input className="input--style-4" ref={todoNameRef} type="text" onKeyPress={handleKeypress} />
+                <button className="btn btn--blue btn--radius-2" onClick={handleAddTodo}>Add Todo</button>
+                <button className="btn btn--blue btn--radius-2"  onClick={deleteCompletedTodos}>Remove Todo</button>
+                <div>{todos.filter(todo => !todo.complete).length} left todo</div>
+                <button>Display List</button>
+                <div className="notification">{notification}</div>
+            </div>
         </div>
     </>
   )

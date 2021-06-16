@@ -8,7 +8,6 @@ body {
 
 }
 
-
 .todo-description {
   position: inherit;
   padding: 0 30px;
@@ -20,6 +19,7 @@ body {
 }
 
 .todo-panel {
+  margin-top: 5rem;
   background: #fff;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -29,14 +29,16 @@ body {
 }
 
 .todo-element {
+  transform: rotate3d(1, 0, 0, 10deg);
   min-width: 18em;
   max-width: 64vw;
   width: 100%;
   background: -webkit-linear-gradient(to right, #d7d5ad, #F1F1EF, #F1F1EF);
   background: linear-gradient(to right, #d7d5ad, #F1F1EF, #F1F1EF);
+  box-sizing: border-box;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.8);
   transition: all 0.3s ease-in-out;
   padding: 2vh 8vw;
-
   justify-content: space-around;
   margin: 0.5vh;
   font-size: 1.25em;
@@ -50,32 +52,25 @@ body {
 .edit-Panel {
   z-index: 100;
   position: absolute;
-
   background: #fff;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   -moz-box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
   width: 50vw;
-
 }
 
 .todo-element:hover {
-
   background: -webkit-linear-gradient(to right, #5dff0e, #eec93b);
   background: linear-gradient(to right, #5dff0e, #eec93b);
   cursor: pointer;
   animation: skew 3s infinite;
-  transform: skew(-5deg);
+  transform: translateX(2%);
   transition: all 0.3s ease;
 }
 
 .todo-element:hover:after {
   background: black;
-}
-
-.input-text {
-
 }
 
 /* Customize the label (the container) */
@@ -90,7 +85,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
 }
 
 /* Hide the browser's default checkbox */
@@ -149,24 +143,19 @@ body {
 input {
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
-  color: -internal-light-dark(black, white);
   letter-spacing: normal;
   word-spacing: normal;
   text-transform: none;
-  text-indent: 0px;
   text-shadow: none;
   display: inline-block;
   text-align: start;
   appearance: auto;
-  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
   -webkit-rtl-ordering: logical;
   cursor: pointer;
-  margin: 0em;
   font: 400 13.3333px Arial;
   padding: 1px 2px;
   border-width: 2px;
   border-style: inset;
-  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
   border-image: initial;
 }
 
@@ -174,9 +163,7 @@ input {
   align-self: end;
   line-height: 27px;
   background: #fafafa;
-  -webkit-box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
   -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
-  box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -197,9 +184,7 @@ input {
 .input--style-4 {
   line-height: 50px;
   background: #fafafa;
-  -webkit-box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
   -moz-box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.08);
-  box-shadow: inset 0 1px 3px 0 rgb(0 0 0 / 8%);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -262,6 +247,9 @@ button {
   margin-bottom: 40px;
   color: #fff;
   text-align: center;
+
+  background: red;
+  align-items: center;
 }
 
 @keyframes roll {
@@ -301,4 +289,9 @@ button {
   100% {
     transform: rotate(360deg) scale(1.1);
   }
+}
+
+.feature-container {
+  position: relative;
+  top: -20%;
 }
